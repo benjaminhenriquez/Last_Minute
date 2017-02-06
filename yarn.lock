@@ -4769,10 +4769,6 @@ react-addons-shallow-compare@^15.0.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-addons-test-utils@^0.14.7:
-  version "0.14.8"
-  resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-0.14.8.tgz#dcddc039e71fc3c81d80338e53a3714f14d41e1f"
-
 react-board@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-board/-/react-board-1.0.2.tgz#ced51be2659bd1f5138bf3ef4a500391e21d3b70"
@@ -4970,11 +4966,23 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+redux-promise-axios@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/redux-promise-axios/-/redux-promise-axios-0.0.8.tgz#260cc51bff201ff3e0a0a62b573cc93f314dbedc"
+
+redux-promise-middleware@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/redux-promise-middleware/-/redux-promise-middleware-4.2.0.tgz#052a7ac2df0e3468e196279f14bdefe711d10cac"
+
 redux-promise@^0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/redux-promise/-/redux-promise-0.5.3.tgz#e97e6c9d3bf376eacb79babe6d906da20112d6d8"
   dependencies:
     flux-standard-action "^0.6.1"
+
+redux-thunk@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
 redux@^3.0.4:
   version "3.6.0"

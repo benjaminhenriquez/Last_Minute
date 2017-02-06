@@ -31,6 +31,9 @@
     "react-sparklines": "^1.6.0",
     "redux": "^3.0.4",
     "redux-promise": "^0.5.3",
+    "redux-promise-axios": "^0.0.8",
+    "redux-promise-middleware": "^4.2.0",
+    "redux-thunk": "^2.2.0",
     "webpack": "^1.14.0"
   },
   "scripts": {
