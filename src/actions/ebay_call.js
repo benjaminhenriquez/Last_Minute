@@ -1,11 +1,15 @@
 import axios from 'axios';
 
-export default function(query){
+export const DISPLAY_RESULTS = "DISPLAY_RESULTS"
+
+// import { displayResults } from './display_results'
+
+export function ebayCall(query){
   let timeLimit = 600000; // 10 mins
   let maxPrice = 10.00; // 10 dollars
   let pages = 3;
 
-  // let deadline = new Date(Date.now() + timeLimit).toJSON();
+  let deadline = new Date(Date.now() + timeLimit).toJSON();
 
   let apiURL = 'https://svcs.ebay.com/services/search/FindingService/v1';
   let queryData = {params:{
@@ -17,31 +21,30 @@ export default function(query){
     'keywords': 'baseball',  //query example, using 'baseball' search term
     'paginationInput.entriesPerPage': pages,
     'sortOrder': 'BestMatch',
-    // 'itemFilter(0).name': 'EndTimeTo',
-    // 'itemFilter(0).value': deadline,
-    'itemFilter(0).name': 'ListingType',
-    'itemFilter(0).value': 'Auction',
-    'itemFilter(1).name': 'MaxPrice',
-    'itemFilter(1).value': maxPrice,
+    'itemFilter(0).name': 'EndTimeTo',
+    'itemFilter(0).value': deadline,
+    'itemFilter(1).name': 'ListingType',
+    'itemFilter(1).value': 'Auction',
+    'itemFilter(2).name': 'MaxPrice',
+    'itemFilter(2).value': maxPrice,
     'outputSelector(0)': 'PictureURLLarge',
     'outputSelector(1)': 'SellerInfo'}
   };
 
 
-let request = axios.get(apiURL, queryData)
+axios.get(apiURL, queryData)
   .then(function(results) {
-    let searchResults = results.data.findItemsAdvancedResponse[0].searchResult[0]
-    console.log(searchResults)
-    return searchResults
-  }
+    let request = results.data.findItemsAdvancedResponse[0].searchResult[0].item
+    console.log(request)
 
-    )
+        return {type: DISPLAY_RESULTS, payload: request};
+  
+  }    )
 
 
 
-  return {
-      type: "SEARCH_TERM",
-      payload: query
-    };
+
+
+
 
 }
