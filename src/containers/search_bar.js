@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { updateSearchTerm }  from '../actions/search_term';
-import { ebayCall } from '../actions/ebay_call';
+
+import ebayCall from '../actions/ebay_call'
+
 
 class SearchBar extends Component {
   render() {
-          console.log(this.props.searchTerm)
     return (
       <div>
-
         <div className="container">
           <div className="jumbotron">
           <h1>L A S T M I N U T E</h1>
@@ -31,19 +30,14 @@ class SearchBar extends Component {
   }
 
   onInputChange(event){
-    this.props.updateSearchTerm(event);
-    this.props.ebayCall(event);
 
+    this.props.ebayCall(event);
   }
 
 }
 
-function mapStateToProps({ searchTerm }){
-  return { searchTerm };
-}
-
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ ebayCall , updateSearchTerm }, dispatch)
+  return bindActionCreators({ ebayCall }, dispatch)
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SearchBar);
+export default connect(null,mapDispatchToProps)(SearchBar);

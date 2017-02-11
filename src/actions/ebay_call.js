@@ -2,9 +2,7 @@ import axios from 'axios';
 
 export const DISPLAY_RESULTS = "DISPLAY_RESULTS"
 
-// import { displayResults } from './display_results'
-
-export function ebayCall(query){
+export default function(query){
   let timeLimit = 600000; // 10 mins
   let maxPrice = 10.00; // 10 dollars
   let pages = 3;
@@ -18,7 +16,7 @@ export function ebayCall(query){
     'SECURITY-APPNAME': 'Benjamin-LastMinu-PRD-7d0e575c3-05a8dcf0',
     'RESPONSE-DATA-FORMAT': 'JSON',
     'REST-PAYLOAD': 'true',
-    'keywords': 'baseball',  //query example, using 'baseball' search term
+    'keywords': query,
     'paginationInput.entriesPerPage': pages,
     'sortOrder': 'BestMatch',
     'itemFilter(0).name': 'EndTimeTo',
@@ -32,19 +30,10 @@ export function ebayCall(query){
   };
 
 
-axios.get(apiURL, queryData)
-  .then(function(results) {
-    let request = results.data.findItemsAdvancedResponse[0].searchResult[0].item
+  let request = axios.get(apiURL, queryData)
+
+
     console.log(request)
 
-        return {type: DISPLAY_RESULTS, payload: request};
-  
-  }    )
-
-
-
-
-
-
-
+    return {type:DISPLAY_RESULTS, payload: request};
 }
