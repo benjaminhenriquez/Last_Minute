@@ -52,6 +52,12 @@ form span {
 }
 
 
+.ItemImage{
+  height: auto;
+  width: 25%;
+}
+
+
 
 font-family: 'Bungee Hairline', cursive;
 font-family: 'Pompiere', cursive;

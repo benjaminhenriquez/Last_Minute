@@ -7,19 +7,14 @@ class Item extends Component {
     debugger
 
     return (
-      <div >
-      <a href={this.props.results[this.props.id].viewItemURL[0]} target="_blank">
-        <div  >
-            <img src={this.props.results[this.props.id].galleryURL[0]} />
-                <div >
-                  <h5>{this.props.results[this.props.id].title[0]}</h5>
-                  <p>${this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__}</p><p>{this.props.results[this.props.id].location[0]}</p>
 
-      </div>
-      </div>
-   </a>
-   <input type='submit' onClick={this.doSomething.bind(this)}/>
-      </div>
+
+        <a className="carousel-item" href={this.props.results[this.props.id].viewItemURL[0]} target="_blank">
+            <img className="ItemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
+               </a>
+
+
+
     );
   }
 
@@ -36,3 +31,9 @@ function mapStateToProps({ results }){
 }
 
 export default connect(mapStateToProps)(Item);
+
+//           <div >
+//             <h5>{this.props.results[this.props.id].title[0]}</h5>
+//             <p>${this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__}</p><p>{this.props.results[this.props.id].location[0]}</p>
+//
+// </div>

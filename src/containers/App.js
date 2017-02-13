@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import '../style/App.css';
+
 import SearchBar from './search_bar'
 import Results from './results'
 
