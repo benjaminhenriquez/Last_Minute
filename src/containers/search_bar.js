@@ -4,33 +4,33 @@ import { bindActionCreators } from 'redux';
 
 
 import ebayCall from '../actions/ebay_call'
+import '../style/App.css';
 
 
 class SearchBar extends Component {
   render() {
     return (
-      <div>
-        <div className="container">
-          <div className="jumbotron">
-          <h1>L A S T M I N U T E</h1>
-          <h3>1 Minute • 3 Choices • 1 Dollar</h3>
-            <div className="lead">
-            <form>
-            <input
-              placeholder="Search for Deals"
-              className="form-control"
-              onChange={event => this.onInputChange(event.target.value)}
-              />
-            </form>
+      <div id="shoe">
+      <img id="image" src={require('../../public/images/clock.jpg')}/>
+      <h3><span>Last Minute</span></h3>
+
+          <form ><span>
+            <div className="input-field">
+              <input
+                id="search" type="search"
+                placeholder="Search for Deals"
+                onChange={event => this.onInputChange(event.target.value)}
+                />
+              <label className="label-icon" for="search"><i className="material-icons">search</i></label>
+              <i className="material-icons">close</i>
             </div>
-          </div>
-        </div>
+          </span></form>
+
       </div>
     );
   }
 
   onInputChange(event){
-
     this.props.ebayCall(event);
   }
 

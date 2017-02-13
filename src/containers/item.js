@@ -14,12 +14,21 @@ class Item extends Component {
                 <div >
                   <h5>{this.props.results[this.props.id].title[0]}</h5>
                   <p>${this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__}</p><p>{this.props.results[this.props.id].location[0]}</p>
+
       </div>
       </div>
    </a>
+   <input type='submit' onClick={this.doSomething.bind(this)}/>
       </div>
     );
   }
+
+doSomething(){
+  event.preventDefault()
+  alert(this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__)
+
+}
+
 }
 
 function mapStateToProps({ results }){

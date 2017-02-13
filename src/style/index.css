@@ -9,6 +9,54 @@ h1 {
 }
 
 h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bungee Hairline', serif;
   color: #D4AF37;
+  position: absolute;
+  top: 10%;
+  width: 20%;
 }
+
+#image {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+}
+
+#shoe {
+   position: relative;
+   width: 100%; /* for IE 6 */
+}
+
+
+h3 span {
+   color: white;
+   font: bold 24px/45px 'Merriweather Sans', sans-serif;
+   letter-spacing: -1px;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px;
+}
+
+form{
+  position: absolute;
+  top: 40%;
+  width: 40%;
+}
+
+form span {
+   color: white;
+   font: bold 24px/45px 'Merriweather Sans', sans-serif;
+   letter-spacing: -1px;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+}
+
+
+
+font-family: 'Bungee Hairline', cursive;
+font-family: 'Pompiere', cursive;
+font-family: 'Bungee', cursive;
+font-family: 'Yatra One', cursive;
+font-family: 'Rakkas', cursive;
+font-family: 'Londrina Outline', cursive;
+font-family: 'Merriweather Sans', sans-serif;

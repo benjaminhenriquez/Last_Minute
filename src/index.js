@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 // import thunk from 'redux-thunk'
 
-import App from './components/App';
+import App from './containers/App';
 import reducers from './reducers';
 import './style/index.css';
 

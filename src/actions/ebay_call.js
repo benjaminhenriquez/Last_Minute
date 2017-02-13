@@ -5,7 +5,7 @@ export const DISPLAY_RESULTS = "DISPLAY_RESULTS"
 export default function(query){
   let timeLimit = 600000; // 10 mins
   let maxPrice = 10.00; // 10 dollars
-  let pages = 3;
+  let pages = 10;
 
   let deadline = new Date(Date.now() + timeLimit).toJSON();
 

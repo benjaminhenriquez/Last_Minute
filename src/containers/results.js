@@ -24,18 +24,15 @@ class Results extends Component {
 
 createBoard(){
   //this class method creates the table with each of the BoardPiece containers
-  let table = [];
+  let list = [];
 
-  for(let id = 0; id< this.props.results.length; id+=3){
-    let row = []
+  for(let id = 0; id< this.props.results.length; id++){
 
-    for(let j = 0; j<= 2; j++){
-      row.push(<td><Item id={id+j} /></td>)
+      list.push(<Item id={id}/>)
     }
-    table.push(<tr>{row}</tr>)
-  }
 
-  return table;
+
+  return list;
 }
 
 }
