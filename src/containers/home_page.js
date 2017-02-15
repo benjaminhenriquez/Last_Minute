@@ -7,22 +7,32 @@ import ebayCall from '../actions/ebay_call'
 import '../style/App.css';
 
 
-class SearchBar extends Component {
+class Home extends Component {
+
+  constructor(props){
+  super(props);
+
+  this.state = { term: ''};
+}
+
   render() {
     return (
       <div id="shoe">
       <img id="image" src={require('../../public/images/clock.jpg')}/>
-      <h3><span>Last Minute</span></h3>
+      <h1><span>Last Minute</span></h1>
 
-          <form ><span>
+          <form  onSubmit={this.onFormSubmit.bind(this)}><span>
             <div className="input-field">
               <input
                 id="search" type="search"
                 placeholder="Search for Deals"
-                onChange={event => this.onInputChange(event.target.value)}
-                />
+                        value={this.state.term}
+                        onChange={this.onInputChange.bind(this)} />
+
+
               <label className="label-icon" for="search"><i className="material-icons">search</i></label>
               <i className="material-icons">close</i>
+              <input className="button" type="submit" value="Search" alt="Submit"/>
             </div>
           </span></form>
 
@@ -30,9 +40,16 @@ class SearchBar extends Component {
     );
   }
 
+
+  onFormSubmit(event){
+  event.preventDefault();
+
+  this.props.ebayCall(this.state.term);
+}
+
   onInputChange(event){
-    this.props.ebayCall(event);
-  }
+  this.setState({ term: event.target.value});
+}
 
 }
 
@@ -40,4 +57,6 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({ ebayCall }, dispatch)
 }
 
-export default connect(null,mapDispatchToProps)(SearchBar);
+export default connect(null,mapDispatchToProps)(Home);
+
+// onChange={event => this.onInputChange(event.target.value)}

@@ -7,14 +7,13 @@ class Item extends Component {
     debugger
 
     return (
-
-
+      <div className="carousel-item blue white-text" href={this.props.href}>
+        <h6>{this.props.results[this.props.id].title[0]}</h6>
+        <p className="white-text">${this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__}</p><p>{this.props.results[this.props.id].location[0]}</p>
         <a className="carousel-item" href={this.props.results[this.props.id].viewItemURL[0]} target="_blank">
-            <img className="ItemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
-               </a>
-
-
-
+        <img className="itemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
+        </a>
+      </div>
     );
   }
 
@@ -31,9 +30,3 @@ function mapStateToProps({ results }){
 }
 
 export default connect(mapStateToProps)(Item);
-
-//           <div >
-//             <h5>{this.props.results[this.props.id].title[0]}</h5>
-//             <p>${this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__}</p><p>{this.props.results[this.props.id].location[0]}</p>
-//
-// </div>

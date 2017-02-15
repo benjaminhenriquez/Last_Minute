@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import '../style/App.css';
 
-import SearchBar from './search_bar'
+import Home from './home_page'
 import Results from './results'
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
   renderPage(){
     if(this.props.results.length===0){
       return(
-        <SearchBar/>
+        <Home/>
       )
     }
     else{
