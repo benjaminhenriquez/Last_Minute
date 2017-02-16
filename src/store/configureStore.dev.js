@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 // import thunk from 'redux-thunk'
-import rootReducer from '../reducers/rootReducer'
+import rootReducer from '../reducers/index'
 import ReduxPromise from 'redux-promise';
 export default function configureStore(initialState) {
   const finalCreateStore = compose(
@@ -12,8 +12,8 @@ export default function configureStore(initialState) {
     const store = finalCreateStore(rootReducer, initialState);
 
     if (module.hot) {
-      module.hot.accept('../reducers/rootReducer', () => {
-        const nextReducer = require('../reducers/rootReducer');
+      module.hot.accept('../reducers/index', () => {
+        const nextReducer = require('../reducers/index');
       // might just be reducers instead of rootReducer?
         store.replaceReducer(nextReducer);
       })
