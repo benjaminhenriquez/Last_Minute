@@ -16,7 +16,7 @@ class SearchBar extends Component {
             id="search_2" type="search"
             placeholder="Search for Deals"
             onChange={event => this.onInputChange(event.target.value)}/>
-          <label className="label-icon" for="search"><i className="material-icons">search</i></label>
+          <label className="label-icon" for="search"><i className="material-icons"></i></label>
         </div>
       </form>
       </div>

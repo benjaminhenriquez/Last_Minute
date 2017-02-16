@@ -27,8 +27,8 @@ class Home extends Component {
                 placeholder="Search for Deals"
                         value={this.state.term}
                         onChange={this.onInputChange.bind(this)} />
-              <label className="label-icon" for="search"><i className="material-icons">search</i></label>
-              <i id="material-icons" className="material-icons">close</i>
+              <label className="label-icon" for="search"><i className="material-icons"></i></label>
+              <i id="material-icons" className="material-icons"></i>
               <input className="button" type="submit" value="Search" alt="Submit"/>
             </div>
           </span></form>
