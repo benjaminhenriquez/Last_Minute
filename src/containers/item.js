@@ -3,11 +3,17 @@ import { connect } from 'react-redux';
 import $ from 'jquery'
 
 class Item extends Component {
-  debugger
+  constructor(props){
+    super(props);
+    this.state = {now: Date.now()}
+  }
 
   render() {
-    let time = (new Date(this.props.results[this.props.id].listingInfo[0].endTime[0]) - new Date()) / 1000
-    let timeId = $(`#time${this.props.id}`)
+
+    let endTime = (new Date(this.props.results[this.props.id].listingInfo[0].endTime[0]) - new Date()) / 1000
+    let timeId = $(`#time${this.props.id}`);
+    let now = this.state.now;
+
     return (
       <div >
         <p className="item_name">{this.props.results[this.props.id].title[0]}</p>
@@ -15,16 +21,12 @@ class Item extends Component {
         <a href={this.props.results[this.props.id].viewItemURL[0]} target="_blank" alt="Ebay.com" title="click here to view Ebay listing">
         <img className="itemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
         </a>
-        <p>{this.startTimer(time, timeId)}</p>
+
       </div>
     );
   }
 
-doSomething(){
-  event.preventDefault()
-  alert(this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__)
 
-}
 
 toFixed(value, precision) {
     var precision = precision || 0,
@@ -37,14 +39,14 @@ toFixed(value, precision) {
             padding = new Array(Math.max(precision - fraction.length, 0) + 1).join('0');
         result += '.' + padding + fraction;
     }
+
     return result;
 }
 
-startTimer(duration,timeId) {
-  debugger
-  let start = Date.now(), diff, hours, minutes, seconds
+startTimer(duration,timeId,now) {
+  let start = now, diff, hours, minutes, seconds
   function timer() {
-    diff = duration - (((Date.now() - start) / 1000) | 0)
+    diff = duration - (((now - start) / 1000) | 0)
 
     minutes = ((diff % 3600) / 60) | 0
     seconds = (diff % 60) | 0
@@ -54,8 +56,13 @@ startTimer(duration,timeId) {
     return `${minutes} : ${seconds} remaining!`
 
     }
+
     return timer();
   }
+
+  componentDidMount() {
+  this.setState({ now: Date.now() });
+}
 
 }
 
@@ -64,3 +71,6 @@ function mapStateToProps({ results }){
 }
 
 export default connect(mapStateToProps)(Item);
+
+
+  // <p>{this.startTimer(endTime, timeId, now)}</p>

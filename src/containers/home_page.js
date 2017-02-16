@@ -28,7 +28,7 @@ class Home extends Component {
                         value={this.state.term}
                         onChange={this.onInputChange.bind(this)} />
               <label className="label-icon" for="search"><i className="material-icons">search</i></label>
-              <i className="material-icons">close</i>
+              <i id="material-icons" className="material-icons">close</i>
               <input className="button" type="submit" value="Search" alt="Submit"/>
             </div>
           </span></form>
