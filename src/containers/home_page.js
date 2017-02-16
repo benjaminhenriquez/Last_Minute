@@ -11,7 +11,6 @@ class Home extends Component {
 
   constructor(props){
   super(props);
-
   this.state = { term: ''};
 }
 
@@ -21,15 +20,13 @@ class Home extends Component {
       <img id="image" src={require('../../public/images/clock.jpg')}/>
       <h1><span>Last Minute</span></h1>
 
-          <form  onSubmit={this.onFormSubmit.bind(this)}><span>
+          <form  className="form_1" onSubmit={this.onFormSubmit.bind(this)}><span className="form_span1">
             <div className="input-field">
               <input
-                id="search" type="search"
+                id="search_1" type="search"
                 placeholder="Search for Deals"
                         value={this.state.term}
                         onChange={this.onInputChange.bind(this)} />
-
-
               <label className="label-icon" for="search"><i className="material-icons">search</i></label>
               <i className="material-icons">close</i>
               <input className="button" type="submit" value="Search" alt="Submit"/>
@@ -40,10 +37,8 @@ class Home extends Component {
     );
   }
 
-
   onFormSubmit(event){
   event.preventDefault();
-
   this.props.ebayCall(this.state.term);
 }
 
@@ -58,5 +53,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(null,mapDispatchToProps)(Home);
-
-// onChange={event => this.onInputChange(event.target.value)}

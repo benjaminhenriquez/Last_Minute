@@ -8,7 +8,7 @@ export const DISPLAY_RESULTS = "DISPLAY_RESULTS"
 export default function(query){
   let timeLimit = 600000; // 10 mins
   let maxPrice = 10.00; // 10 dollars
-  let pages = 5;
+  let pages = 10;
 
   let deadline = new Date(Date.now() + timeLimit).toJSON();
 
@@ -37,8 +37,5 @@ export default function(query){
 
 
     console.log(request)
-    // $('.App').ready(function(){
-    //   $('.carousel').carousel();
-    // });
     return {type:DISPLAY_RESULTS, payload: request};
 }

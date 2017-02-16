@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 
 import Item from './item'
+import SearchBar from './search_bar'
 import '../style/index.css'
 
 class Results extends Component {
@@ -10,6 +11,7 @@ class Results extends Component {
 
     return(
       <div>
+        <SearchBar/>
         {this.createCarousel()}
       </div>
   )
