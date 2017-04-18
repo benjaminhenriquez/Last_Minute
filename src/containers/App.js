@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import '../style/App.css';
-
 import Home from './home_page'
 import Results from './results'
 

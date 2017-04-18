@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import ebayCall from '../actions/ebay_call'
-import '../style/App.css';
 
 class SearchBar extends Component {
   render() {

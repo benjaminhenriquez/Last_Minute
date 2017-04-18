@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 
+
 import ebayCall from '../actions/ebay_call'
-import '../style/App.css';
+
 
 
 class Home extends Component {
@@ -16,23 +17,25 @@ class Home extends Component {
 
   render() {
     return (
-      <div id="shoe">
-      <img id="image" src={require('../../public/images/clock.jpg')}/>
+      <div className="home_page" >
+      <div className="row">
+      <div className="col span-1-of-2">
+      <div className = "title_form">
       <h1><span>Last Minute</span></h1>
 
-          <form  className="form_1" onSubmit={this.onFormSubmit.bind(this)}><span className="form_span1">
-            <div className="input-field">
+          <form  className="form" onSubmit={this.onFormSubmit.bind(this)}>
               <input
-                id="search_1" type="search"
-                placeholder="Search for Deals"
+                className="search_box"
+                placeholder="Find deals expiring soon"
                         value={this.state.term}
                         onChange={this.onInputChange.bind(this)} />
-              <label className="label-icon" for="search"><i className="material-icons">search</i></label>
-              <i id="material-icons" className="material-icons">close</i>
-              <input className="button" type="submit" value="Search" alt="Submit"/>
-            </div>
-          </span></form>
-
+              <div className="row">
+              <input type="submit" value="Search" alt="Submit"/>
+              </div>
+          </form>
+          </div>
+          </div>
+        </div>
       </div>
     );
   }

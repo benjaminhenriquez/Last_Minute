@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+html,
+body {
+    background-color: #fff;
+    color: #555;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    font-family: 'Lora', serif;
+}
+
+h1 {
+  font-size: 400%;
+  color: #ecf0f1;
+  text-transform: uppercase;
+}
+
+
+.home_page {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(/resources/img/clock.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden
+}
+
+.title_form {
+float: left;
+margin-top: 200px;
+margin-left: 50px;
+}
+
+.search_box {
+  height: 40px;
+  width: 400px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  font-size: 100%;
+}
+
+input[type=submit] {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 4px;
+    -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+    background-color: #d8e1e3;
+    border: 1px solid #d8e1e3;
+    color: #606060;
+    margin-right: 15px;
+}
