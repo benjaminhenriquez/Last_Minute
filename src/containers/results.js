@@ -7,11 +7,42 @@ import SearchBar from './search_bar'
 
 
 class Results extends Component {
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      time: "10",
+      price: "10",
+      query: ""
+    }
+
+  }
+
+  onUpdateTime(event){
+    this.setState({time: event})
+  }
+
+  onUpdatePrice(event){
+    this.setState({price: event})
+  }
+
+  onUpdateQuery(event){
+    this.setState({query: event})
+  }
+
   render() {
 
     return(
       <div>
-        <SearchBar/>
+        <SearchBar
+          onUpdateTime={this.onUpdateTime.bind(this)}
+          onUpdatePrice={this.onUpdatePrice.bind(this)}
+          onUpdateQuery={this.onUpdateQuery.bind(this)}
+          time={this.state.time}
+          price={this.state.price}
+          query={this.state.query}
+        />
         {this.createCarousel()}
       </div>
   )

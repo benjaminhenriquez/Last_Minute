@@ -18,24 +18,23 @@ class Home extends Component {
   render() {
     return (
       <div className="home_page" >
-      <div className="row">
+
+      <div className="row" id="hello">
       <div className="col span-1-of-2">
       <div className = "title_form">
       <h1><span>Last Minute</span></h1>
 
-          <form  className="form" onSubmit={this.onFormSubmit.bind(this)}>
+          <form onSubmit={this.onFormSubmit.bind(this)}>
               <input
                 className="search_box"
                 placeholder="Find deals expiring soon"
                         value={this.state.term}
                         onChange={this.onInputChange.bind(this)} />
-              <div className="row">
-              <input type="submit" value="Search" alt="Submit"/>
-              </div>
+              <button type="submit" value="Search" alt="Submit"><i className="ion-ios-search-strong icon-small"></i></button>
           </form>
           </div>
           </div>
-        </div>
+          </div>
       </div>
     );
   }

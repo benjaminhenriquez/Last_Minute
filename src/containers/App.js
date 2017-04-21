@@ -5,6 +5,7 @@ import Home from './home_page'
 import Results from './results'
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">

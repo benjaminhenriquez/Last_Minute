@@ -6,28 +6,57 @@ import _ from 'lodash';
 import ebayCall from '../actions/ebay_call'
 
 class SearchBar extends Component {
+
   render() {
     return(
       <div>
-      <form className="search_result_page" onSubmit={this.onFormSubmit.bind(this)}>
-        <div className="input-field">
+      <nav>
+      <form  onSubmit={event => this.onFormSubmit(event)}>
           <input
-            id="search_2" type="search"
-            placeholder="Search for Deals"
+            className="search_box"
+            type="search"
+            placeholder="Search..."
             onChange={event => this.onInputChange(event.target.value)}/>
-          <label className="label-icon" for="search"><i className="material-icons">search</i></label>
-        </div>
+          <input
+            className="maxPrice"
+            type="number"
+            min="1"
+            max="100"
+            placeholder="10"
+            onChange={event => this.props.onUpdatePrice(event.target.value)}>
+          </input>
+          <input
+            className="maxTime"
+            type="number"
+            min="1"
+            max="60"
+            placeholder="10"
+            onChange={event => this.props.onUpdateTime(event.target.value)}>
+          </input>
+          <input
+            className="hidden"
+            type="submit"
+            ></input>
       </form>
+      </nav>
       </div>
   )
 }
 
 onInputChange(event){
-  _.debounce(this.props.ebayCall(event), 300);
+  let time = parseInt(this.props.time)
+  let price = parseInt(this.props.price)
+  this.props.onUpdateQuery(event)
+  _.debounce(this.props.ebayCall(event, time, price), 300);
+
   }
 
   onFormSubmit(event){
     event.preventDefault();
+    let time = parseInt(this.props.time)
+    let price = parseInt(this.props.price)
+    let query = this.props.query
+    this.props.ebayCall(query, time, price)
   }
 
 }

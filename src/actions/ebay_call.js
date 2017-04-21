@@ -3,10 +3,10 @@ const querystring = require('querystring')
 
 export const DISPLAY_RESULTS = "DISPLAY_RESULTS"
 
-export default function(query){
-  let timeLimit = 600000; // 10 mins
-  let maxPrice = 10.00; // 10 dollars
-  let pages = 10;
+export default function(query, timeL=10, maxP=10){
+  let timeLimit = timeL * 60000; // 10 mins
+  let maxPrice = maxP; // 10 dollars
+  let pages = 15;
 
   let deadline = new Date(Date.now() + timeLimit).toJSON();
 
