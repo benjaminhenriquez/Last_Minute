@@ -4,8 +4,33 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import ebayCall from '../actions/ebay_call'
+import queryTerm from '../actions/query_term'
 
 class SearchBar extends Component {
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      time: "10",
+      price: "10",
+      query: ""
+    }
+
+  }
+
+  onUpdateTime(event){
+    this.setState({time: event})
+  }
+
+  onUpdatePrice(event){
+    this.setState({price: event})
+  }
+
+  onUpdateQuery(event){
+    this.setState({query: event})
+  }
+
 
   render() {
     return(
@@ -23,7 +48,7 @@ class SearchBar extends Component {
             min="1"
             max="100"
             placeholder="10"
-            onChange={event => this.props.onUpdatePrice(event.target.value)}>
+            onChange={event => this.onUpdatePrice(event.target.value)}>
           </input>
           <input
             className="maxTime"
@@ -31,7 +56,7 @@ class SearchBar extends Component {
             min="1"
             max="60"
             placeholder="10"
-            onChange={event => this.props.onUpdateTime(event.target.value)}>
+            onChange={event => this.onUpdateTime(event.target.value)}>
           </input>
           <input
             className="hidden"
@@ -44,25 +69,30 @@ class SearchBar extends Component {
 }
 
 onInputChange(event){
-  let time = parseInt(this.props.time)
-  let price = parseInt(this.props.price)
-  this.props.onUpdateQuery(event)
+  let time = parseInt(this.state.time)
+  let price = parseInt(this.state.price)
+  this.onUpdateQuery(event)
   _.debounce(this.props.ebayCall(event, time, price), 300);
 
   }
 
   onFormSubmit(event){
     event.preventDefault();
-    let time = parseInt(this.props.time)
-    let price = parseInt(this.props.price)
+    let time = parseInt(this.state.time)
+    let price = parseInt(this.state.price)
     let query = this.props.query
     this.props.ebayCall(query, time, price)
+    this.props.queryTerm(query)
   }
 
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({ ebayCall }, dispatch)
+function mapStateToProps({ results }){
+  return { results };
 }
 
-export default connect(null,mapDispatchToProps)(SearchBar);
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ ebayCall, queryTerm }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

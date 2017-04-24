@@ -40,8 +40,10 @@ h1 {
   font-size: 100%;
   float: left; }
 
-input .hidden {
-  visibility: hidden; }
+.hidden {
+  visibility: hidden;
+  background: transparent;
+  border: none; }
 
 button[type=submit] {
   height: 40px;

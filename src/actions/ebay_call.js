@@ -31,13 +31,10 @@ export default function(query, timeL=10, maxP=10){
   ;
 
   let result = querystring.stringify(queryData)
-  console.log(result)
-let cors_url = "https://cors-anywhere.herokuapp.com/"+ apiURL+result
+
+  let cors_url = "https://cors-anywhere.herokuapp.com/"+ apiURL+result
 
   let request = axios.get(cors_url)
 
-
-
-    console.log(request)
     return {type:DISPLAY_RESULTS, payload: request};
 }
