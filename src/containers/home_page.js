@@ -13,7 +13,7 @@ class Home extends Component {
 
       <div className="row" id="hello">
       <div className="col span-1-of-2">
-      <div className = "title_form">
+      <div className ="title_form">
       <h1><span>Last Minute</span></h1>
           <form onSubmit={this.onFormSubmit.bind(this)}>
               <input
@@ -30,10 +30,10 @@ class Home extends Component {
 
   onFormSubmit(event){
     event.preventDefault();
-  let query = event.target[0].value;
+    let query = event.target[0].value;
+    this.props.ebayCall(query);
+    this.props.queryTerm(query);
 
-  this.props.ebayCall(query);
-  this.props.queryTerm(query);
 }
 
 

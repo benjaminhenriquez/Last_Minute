@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-import Item from './item';
-import SearchBar from './search_bar';
+import Item from './item'
+import SearchBar from './search_bar'
 
 
 class Results extends Component {
@@ -21,16 +21,19 @@ class Results extends Component {
 }
 
 createCarousel(){
-  //this class method creates the table with each of the BoardPiece containers
+  if(this.props.results.length > 0){
   let list = [];
 
-  for(let key = 0; key< this.props.results.length; key++){
+  for(let id = 0; id< this.props.results.length; id++){
 
-      list.push(< Item  className="item" key={key}/>)
+      list.push(< Item  className="item" id={id} />)
     }
 
 
-  return list;
+  return list;}
+  else if(this.props.results.length === 0){
+    return <div>No results Found</div>
+  }
 }
 
 }

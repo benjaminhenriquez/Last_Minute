@@ -32,9 +32,13 @@ export default function(query, timeL=10, maxP=10){
 
   let result = querystring.stringify(queryData)
 
-  let cors_url = "https://cors-anywhere.herokuapp.com/"+ apiURL+result
+  // let cors_url = "https://cors-anywhere.herokuapp.com/"+ apiURL+result
 
-  let request = axios.get(cors_url)
+  // let request = axios.get(cors_url)
+
+  let something = apiURL+result
+
+    let request = axios.get(something)
 
     return {type:DISPLAY_RESULTS, payload: request};
 }

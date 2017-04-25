@@ -10,44 +10,29 @@ class SearchBar extends Component {
 
   constructor(props){
     super(props)
-
     this.state = {
       time: "10",
       price: "10",
-      query: ""
+      query: this.props.query
     }
-
   }
-
-  onUpdateTime(event){
-    this.setState({time: event})
-  }
-
-  onUpdatePrice(event){
-    this.setState({price: event})
-  }
-
-  onUpdateQuery(event){
-    this.setState({query: event})
-  }
-
 
   render() {
     return(
       <div>
       <nav>
-      <form  onSubmit={event => this.onFormSubmit(event)}>
+      <form >
           <input
             className="search_box"
             type="search"
-            placeholder="Search..."
-            onChange={event => this.onInputChange(event.target.value)}/>
+            value={this.state.query}
+            onChange={event => this.onUpdateQuery(event.target.value)}/>
           <input
             className="maxPrice"
             type="number"
             min="1"
             max="100"
-            placeholder="10"
+            value={this.state.price}
             onChange={event => this.onUpdatePrice(event.target.value)}>
           </input>
           <input
@@ -55,40 +40,37 @@ class SearchBar extends Component {
             type="number"
             min="1"
             max="60"
-            placeholder="10"
+            value={this.state.time}
             onChange={event => this.onUpdateTime(event.target.value)}>
           </input>
-          <input
-            className="hidden"
-            type="submit"
-            ></input>
       </form>
       </nav>
       </div>
   )
 }
 
-onInputChange(event){
-  let time = parseInt(this.state.time)
-  let price = parseInt(this.state.price)
-  this.onUpdateQuery(event)
-  _.debounce(this.props.ebayCall(event, time, price), 300);
+  onUpdateTime(event){
+    this.setState({time: event})
+    _.debounce(this.props.ebayCall(this.state.query, event, this.state.price), 300)
+  }
+
+  onUpdatePrice(event){
+    this.setState({price: event})
+    _.debounce(this.props.ebayCall(this.state.query, this.state.time, event), 300)
 
   }
 
-  onFormSubmit(event){
-    event.preventDefault();
-    let time = parseInt(this.state.time)
-    let price = parseInt(this.state.price)
-    let query = this.props.query
-    this.props.ebayCall(query, time, price)
-    this.props.queryTerm(query)
+  onUpdateQuery(event){
+    this.setState({query: event})
+    _.debounce(this.props.ebayCall(event, this.state.time, this.state.price), 300)
   }
+
+
 
 }
 
-function mapStateToProps({ results }){
-  return { results };
+function mapStateToProps({ results, query }){
+  return { results, query };
 }
 
 function mapDispatchToProps(dispatch){
