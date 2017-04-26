@@ -26,8 +26,7 @@ class Item extends Component {
     if(secs > 0){
     return (<div> m:{obj["m"]} s:{obj["s"]}</div>)
   }
-    else if(secs === 0){
-
+    else{
       return (<div> Bidding has ended on this item</div>)
     }
   }
@@ -39,13 +38,8 @@ class Item extends Component {
     let seconds = this.state.seconds - 1;
     if(seconds>=(-1)){
       this.setState({
-        seconds: seconds,
+        seconds: seconds
       });
-    }
-
-    // Check if we're at zero.
-    if (seconds === 0) {
-      this.setState({seconds: 0});
     }
   }
 
@@ -74,9 +68,6 @@ componentDidMount() {
   }
 }
 
-componentWillUnmount(){
-  this.setState({ seconds: 0 });
-}
 
   render() {
 
