@@ -1,34 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import $ from 'jquery'
 
 class Item extends Component {
-  constructor(props){
-    super(props);
-    this.state = {now: Date.now()}
+  constructor() {
+    super();
+    this.state = { time: {}, seconds: 5 };
+    this.timer = 0;
+    this.countDown = this.countDown.bind(this);
   }
 
-  render() {
+  secondsToTime(secs){
+    let hours = Math.floor(secs / (60 * 60));
 
-    let endTime = (new Date(this.props.results[this.props.id].listingInfo[0].endTime[0]) - new Date()) / 1000
-    let timeId = $(`#time${this.props.id}`);
-    let now = this.state.now;
+    let divisor_for_minutes = secs % (60 * 60);
+    let minutes = Math.floor(divisor_for_minutes / 60);
 
-    return (
-      <div >
-        <p className="item_name">{this.props.results[this.props.id].title[0]}</p>
-        <p>${this.toFixed(this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__,2)}</p><p>{this.props.results[this.props.id].location[0]}</p>
-        <a href={this.props.results[this.props.id].viewItemURL[0]} target="_blank" alt="Ebay.com" title="click here to view Ebay listing">
-        <img className="itemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
-        </a>
+    let divisor_for_seconds = divisor_for_minutes % 60;
+    let seconds = Math.ceil(divisor_for_seconds);
 
-      </div>
-    );
+    let obj = {
+      "h": hours,
+      "m": minutes,
+      "s": seconds
+    };
+    return obj;
   }
 
+  countDown() {
+    // Remove one second, set state so a re-render happens.
+    let seconds = this.state.seconds - 1;
+    this.setState({
+      time: this.secondsToTime(seconds),
+      seconds: seconds,
+    });
 
+    // Check if we're at zero.
+    if (seconds == 0) {
+      clearInterval(this.timer);
+    }
+  }
 
-toFixed(value, precision) {
+  toFixed(value, precision) {
     var precision = precision || 0,
         power = Math.pow(10, precision),
         absValue = Math.abs(Math.round(value * power)),
@@ -43,27 +55,40 @@ toFixed(value, precision) {
     return result;
 }
 
-startTimer(duration,timeId,now) {
-  let start = now, diff, hours, minutes, seconds
-  function timer() {
-    diff = duration - (((now - start) / 1000) | 0)
-
-    minutes = ((diff % 3600) / 60) | 0
-    seconds = (diff % 60) | 0
-    minutes = minutes < 10 ? "0" + minutes : minutes
-    seconds = seconds < 10 ? "0" + seconds : seconds
-
-    return `${minutes} : ${seconds} remaining!`
-
-    }
-
-    return timer();
-  }
-
-  componentDidMount() {
-  this.setState({ now: Date.now() });
+componentWillMount() {
+  this.timer = setInterval(this.countDown, 1000);
+  let date1 = new Date(this.props.results[this.props.id].listingInfo[0].endTime[0])
+  let date2 = new Date()
+  let thing = Math.abs(date1 - date2)/1000;
+  console.log(thing)
+  let timeLeftVar = this.secondsToTime(thing);
+  console.log(timeLeftVar)
+  this.setState({ seconds: thing });
+  this.setState({ time: timeLeftVar });
 }
 
+componentWillUnmount(){
+  let timeLeftVar = this.secondsToTime(0)
+  this.setState({ seconds: 0 });
+  this.setState({ time: timeLeftVar });
+}
+
+  render() {
+
+    return(
+      <div>
+        <p className="item_name">{this.props.results[this.props.id].title[0]}</p>
+        <p>${this.toFixed(this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__,2)}</p>
+        <p>{this.props.results[this.props.id].location[0]}</p>
+        <a href={this.props.results[this.props.id].viewItemURL[0]} target="_blank" alt="Ebay.com" title="click here to view Ebay listing">
+            <img className="itemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
+        </a>
+        <div>
+          m: {this.state.time.m} s: {this.state.time.s}
+        </div>
+      </div>
+    );
+  }
 }
 
 function mapStateToProps({ results }){
@@ -71,6 +96,3 @@ function mapStateToProps({ results }){
 }
 
 export default connect(mapStateToProps)(Item);
-
-
-  // <p>{this.startTimer(endTime, timeId, now)}</p>
