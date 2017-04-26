@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import ebayCall from '../actions/ebay_call'
+import clearResults from '../actions/clear_results'
 import queryTerm from '../actions/query_term'
 
 class SearchBar extends Component {
@@ -51,21 +52,22 @@ class SearchBar extends Component {
 
   onUpdateTime(event){
     this.setState({time: event})
-    _.debounce(this.props.ebayCall(this.state.query, event, this.state.price), 300)
+    this.props.clearResults();
+    _.debounce(this.props.ebayCall(this.state.query, event, this.state.price),1500)
   }
 
   onUpdatePrice(event){
     this.setState({price: event})
-    _.debounce(this.props.ebayCall(this.state.query, this.state.time, event), 300)
+    this.props.clearResults();
+    _.debounce(this.props.ebayCall(this.state.query, this.state.time, event),1500)
 
   }
 
   onUpdateQuery(event){
     this.setState({query: event})
-    _.debounce(this.props.ebayCall(event, this.state.time, this.state.price), 300)
+    this.props.clearResults();
+    _.debounce(this.props.ebayCall(event, this.state.time, this.state.price),1500)
   }
-
-
 
 }
 
@@ -74,7 +76,7 @@ function mapStateToProps({ results, query }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ ebayCall, queryTerm }, dispatch)
+  return bindActionCreators({ ebayCall, queryTerm, clearResults}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

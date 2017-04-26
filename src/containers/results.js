@@ -21,6 +21,7 @@ class Results extends Component {
 }
 
 createCarousel(){
+  debugger
   if(this.props.results.length > 0){
   let list = [];
 
@@ -31,7 +32,7 @@ createCarousel(){
 
 
   return list;}
-  else if(this.props.results.length === 0){
+  else if(this.props.results.length < 1){
     return <div>No results Found</div>
   }
 }

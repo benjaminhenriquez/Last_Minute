@@ -17,7 +17,8 @@ class App extends Component {
   }
 
   renderPage(){
-    if(this.props.results.length===0){
+    debugger
+    if(this.props.results.length===0 && this.props.query === ""){
       return(
         <Home/>
       )
@@ -31,8 +32,8 @@ class App extends Component {
 
 }
 
-function mapStateToProps({ results }){
-  return { results };
+function mapStateToProps({ results, query }){
+  return { results, query };
 }
 
 export default connect(mapStateToProps)(App)

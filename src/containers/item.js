@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Item extends Component {
-  constructor() {
-    super();
-    this.state = { time: {}, seconds: 5 };
+  constructor(props) {
+    super(props);
+    this.state = { seconds: 0 };
     this.timer = 0;
     this.countDown = this.countDown.bind(this);
   }
@@ -23,20 +23,29 @@ class Item extends Component {
       "m": minutes,
       "s": seconds
     };
-    return obj;
+    if(secs > 0){
+    return (<div> m:{obj["m"]} s:{obj["s"]}</div>)
+  }
+    else if(secs === 0){
+
+      return (<div> Bidding has ended on this item</div>)
+    }
   }
 
+  //
   countDown() {
-    // Remove one second, set state so a re-render happens.
+    // Remove one second, set state so a re-render happens
+
     let seconds = this.state.seconds - 1;
-    this.setState({
-      time: this.secondsToTime(seconds),
-      seconds: seconds,
-    });
+    if(seconds>=(-1)){
+      this.setState({
+        seconds: seconds,
+      });
+    }
 
     // Check if we're at zero.
-    if (seconds == 0) {
-      clearInterval(this.timer);
+    if (seconds === 0) {
+      this.setState({seconds: 0});
     }
   }
 
@@ -55,22 +64,18 @@ class Item extends Component {
     return result;
 }
 
-componentWillMount() {
+componentDidMount() {
   this.timer = setInterval(this.countDown, 1000);
   let date1 = new Date(this.props.results[this.props.id].listingInfo[0].endTime[0])
   let date2 = new Date()
-  let thing = Math.abs(date1 - date2)/1000;
-  console.log(thing)
-  let timeLeftVar = this.secondsToTime(thing);
-  console.log(timeLeftVar)
-  this.setState({ seconds: thing });
-  this.setState({ time: timeLeftVar });
+  let seconds = Math.abs(date1 - date2)/1000;
+  if(seconds > 0){
+    this.setState({ seconds });
+  }
 }
 
 componentWillUnmount(){
-  let timeLeftVar = this.secondsToTime(0)
   this.setState({ seconds: 0 });
-  this.setState({ time: timeLeftVar });
 }
 
   render() {
@@ -84,7 +89,7 @@ componentWillUnmount(){
             <img className="itemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
         </a>
         <div>
-          m: {this.state.time.m} s: {this.state.time.s}
+          {this.secondsToTime(this.state.seconds)}
         </div>
       </div>
     );

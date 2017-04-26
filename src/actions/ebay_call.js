@@ -1,7 +1,9 @@
 import axios from 'axios';
+
 const querystring = require('querystring')
 
 export const DISPLAY_RESULTS = "DISPLAY_RESULTS"
+
 
 export default function(query, timeL=10, maxP=10){
   let timeLimit = timeL * 60000; // 10 mins
@@ -38,7 +40,7 @@ export default function(query, timeL=10, maxP=10){
 
   let something = apiURL+result
 
-    let request = axios.get(something)
+  let request = axios.get(something)
+  return {type:DISPLAY_RESULTS, payload: request};
 
-    return {type:DISPLAY_RESULTS, payload: request};
 }
