@@ -20,14 +20,19 @@ class SearchBar extends Component {
 
   render() {
     return(
-      <div>
+      <header>
       <nav>
       <form >
+        <div className="col span-2-of-4">
           <input
             className="search_box"
+            id="results_search"
             type="search"
             value={this.state.query}
             onChange={event => this.onUpdateQuery(event.target.value)}/>
+        </div>
+        <div className="col span-1-of-4 form_box">
+          <label>Max Price:</label>
           <input
             className="maxPrice"
             type="number"
@@ -36,6 +41,9 @@ class SearchBar extends Component {
             value={this.state.price}
             onChange={event => this.onUpdatePrice(event.target.value)}>
           </input>
+        </div>
+        <div className="col span-1-of-4 form_box">
+          <label>Time Limit:</label>
           <input
             className="maxTime"
             type="number"
@@ -44,9 +52,10 @@ class SearchBar extends Component {
             value={this.state.time}
             onChange={event => this.onUpdateTime(event.target.value)}>
           </input>
+        </div>
       </form>
       </nav>
-      </div>
+      </header>
   )
 }
 
@@ -80,3 +89,8 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+
+
+    // <label>Max Price:</label>
+
+    // <label>Time Limit:</label>

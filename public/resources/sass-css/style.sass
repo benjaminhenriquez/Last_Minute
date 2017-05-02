@@ -5,8 +5,12 @@ $font: 'Lora', serif
 
 //mixins
 
+// @mixin
+
 
 //style
+
+//Entire Application
 
 *
   margin: 0
@@ -23,6 +27,7 @@ body
   overflow-x: hidden
   font-family: $font
 
+//Home Page
 
 h1
   font-size: 400%
@@ -30,7 +35,10 @@ h1
   text-transform: uppercase
   margin-bottom: 20px
 
-
+.title_form
+  float: left
+  margin-top: 200px
+  margin-left: 50px
 
 .home_page
   background-image: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255,255,255,0.1)), url(/resources/img/clock.jpg)
@@ -39,27 +47,10 @@ h1
   height: 100vh
   overflow: hidden
 
-
-.title_form
-  float: left
-  margin-top: 200px
-  margin-left: 50px
-
-
-.search_box
-  height: 40px
-  width: 450px
-  margin-bottom: 15px
-  border-radius: 2px
-  border: 1px solid #ccc
-  font-size: 100%
-  float: left
-
 .hidden
   visibility: hidden
   background: transparent
   border: none
-
 
 button[type=submit]
   height: 40px
@@ -75,6 +66,42 @@ button[type=submit]
   float: left
   margin-left: 30px
 
+//Both Search Boxes
 
-nav .text_box
-  width: 800px
+.search_box
+  height: 40px
+  width: 450px
+  margin-bottom: 15px
+  border-radius: 2px
+  border: 1px solid #ccc
+  font-size: 100%
+
+//Results Page Search Bar
+
+nav
+  width: 100%
+  margin-top: 1%
+  float: left
+  display: inline-block
+
+.form_box
+  float: left
+  input
+    height: 40px
+    border-radius: 2px
+    border: 1px solid #ccc
+    font-size: 100%
+    margin-left: 5px
+  label
+    text-align: right
+
+
+#results_search
+  text-align: center
+  margin-top: 1%
+  margin-left: 50%
+  margin-right: -100px
+  width: 70%
+  transform: translate(-50%)
+
+//item

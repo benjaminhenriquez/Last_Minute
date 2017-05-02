@@ -72,16 +72,16 @@ componentDidMount() {
   render() {
 
     return(
-      <div>
+      <div className="item">
         <p className="item_name">{this.props.results[this.props.id].title[0]}</p>
         <p>${this.toFixed(this.props.results[this.props.id].sellingStatus[0].currentPrice[0].__value__,2)}</p>
         <p>{this.props.results[this.props.id].location[0]}</p>
-        <a href={this.props.results[this.props.id].viewItemURL[0]} target="_blank" alt="Ebay.com" title="click here to view Ebay listing">
-            <img className="itemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
-        </a>
         <div>
           {this.secondsToTime(this.state.seconds)}
         </div>
+        <a href={this.props.results[this.props.id].viewItemURL[0]} target="_blank" alt="Ebay.com" title="click here to view Ebay listing">
+            <img className="itemImage" src={this.props.results[this.props.id].pictureURLLarge[0]} />
+        </a>
       </div>
     );
   }
