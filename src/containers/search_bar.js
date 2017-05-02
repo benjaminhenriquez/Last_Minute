@@ -62,20 +62,20 @@ class SearchBar extends Component {
   onUpdateTime(event){
     this.setState({time: event})
     this.props.clearResults();
-    _.debounce(this.props.ebayCall(this.state.query, event, this.state.price),300)
+    _.debounce(this.props.ebayCall(this.state.query, event, this.state.price),200)
   }
 
   onUpdatePrice(event){
     this.setState({price: event})
     this.props.clearResults();
-    _.debounce(this.props.ebayCall(this.state.query, this.state.time, event),300)
+    _.debounce(this.props.ebayCall(this.state.query, this.state.time, event),200)
 
   }
 
   onUpdateQuery(event){
     this.setState({query: event})
     this.props.clearResults();
-    _.debounce(this.props.ebayCall(event, this.state.time, this.state.price),800)
+    _.debounce(this.props.ebayCall(event, this.state.time, this.state.price),400)
   }
 
 }
